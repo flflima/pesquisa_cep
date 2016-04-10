@@ -8,7 +8,8 @@
 		
 		function onCepDone(data) {
 			console.log("O endereço é " + data.logradouro);
-			$("#cep").css("border", "2px solid green");
+			$("#cep").removeClass("input_erro");
+			$("#cep").addClass("input_sucesso");
 			$("#mensagem").remove();
 			$("#cep").parent().append($("<div id='mensagem' />")
 										.text("Endereço: " + data.logradouro));
@@ -16,7 +17,8 @@
 		
 		function onCepError(error) {
 			console.log("Erro: " + error.statusText)
-			$("#cep").css("border", "2px solid red");
+			$("#cep").removeClass("input_sucesso");
+			$("#cep").addClass("input_erro");
 			$("#mensagem").remove();
 			$("#cep").parent().append($("<div id='mensagem' />")
 										.text("Erro: " + error.statusText));
