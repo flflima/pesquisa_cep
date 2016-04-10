@@ -28,10 +28,10 @@ div#intro {
     width: 350;
 }
 
-div#cep {
+div#div_cep {
 	width: 400px;
     border-left-width: 100px;
-    padding-left: 400px;
+    padding-left: 450px;
 }
 
 .input_sucesso {
