@@ -1,5 +1,5 @@
-$(function() {
-	function onTarefaKeyDown() {
+﻿$(function() {
+	function onCepFocusOut() {
 		
 		var servico = "http://api.postmon.com.br/v1/cep/";
 		var cep = $("#cep").val();
@@ -7,13 +7,19 @@ $(function() {
 		console.log(servico + cep);
 		
 		function onCepDone(data) {
-			console.log("A Casa do C�digo fica na " + data.logradouro);
+			console.log("O endereço é " + data.logradouro);
 			$("#cep").css("border", "2px solid green");
+			$("#mensagem").remove();
+			$("#cep").parent().append($("<div id='mensagem' />")
+										.text("Endereço: " + data.logradouro));
 		}
 		
 		function onCepError(error) {
 			console.log("Erro: " + error.statusText)
 			$("#cep").css("border", "2px solid red");
+			$("#mensagem").remove();
+			$("#cep").parent().append($("<div id='mensagem' />")
+										.text("Erro: " + error.statusText));
 		};
 
 		$.getJSON(servico + cep)
@@ -22,6 +28,6 @@ $(function() {
 		
 	}
 	
-	$("#cep").focusout(onTarefaKeyDown);
+	$("#cep").focusout(onCepFocusOut);
 }
 );
